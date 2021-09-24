@@ -5,7 +5,7 @@ const crearFitxerAlumne = (nom = no_Name, hores = 0) => {
   console.log("Creant fitxer de l'alumne " + nom);
   console.log("=================================".red);
   let sortida = "";
-  sortida = "el nom es " + `${nom} +" i té " ${hores}`;
+  sortida = "el nom es " + `${nom} i té ${hores}`;
   fs.writeFileSync(`alumne${nom}.txt`, sortida);
   //el "+= es para acumular"
 };
