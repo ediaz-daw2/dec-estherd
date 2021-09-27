@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/ediaz-daw2/dec-estherd#readme",
   "dependencies": {
-    "colors": "^1.4.0"
+    "color-string": "^1.6.0",
+    "colors": "^1.4.0",
+    "yargs": "^17.2.1"
   }
 }
