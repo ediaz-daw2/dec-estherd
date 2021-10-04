@@ -29,8 +29,19 @@ class Tasques {
     this._llista[tasca.id] = tasca;
   }
 
+  canviarTasca(nom = "", pendent=1) {
+    nom.pendent=1
+    this._llista[nom.id] = nom;
+  }
+
 
   carregarTasquesFromArray(tasques = []) {
+    tasques.forEach((tasca) => {
+      this._llista[tasca.id] = tasca;
+    });
+  }
+
+  carregarTasquesFromArraySelec(tasques = []) {
     tasques.forEach((tasca) => {
       this._llista[tasca.id] = tasca;
     });
@@ -67,6 +78,7 @@ llistarTasquesCompletes() {
     }
   });
 }
+
 
 llistarTasquesPendents() {
   console.log();
@@ -107,16 +119,25 @@ llistarTasquesPendents() {
       );
     });
   }
-  async completarTasca(id, pendent) {
-    const tasca = this._llista[id];
-    if (tasca.pendent==1){
-      console.log("(Aquesta tasca ja estaba completada)".gray);
-    }else{
-    tasca.pendent=1;
-    //console.log(tasca);
-    return tasca.nom;
+
+
+  async completarTasca(id,pend) {
+    console.log(id.length);
+    for (let i = 0; i <= id.length; i++) {
+      const tasca = this._llista[id[i]];
+      tasca.pendent=1;
     }
+    return tasca;
+
+    //tasca.pendent=1;
+    /*const tasca = this._llista[id];
+    if (id.pendent!=0){
+      tasca.pendent=0;
+    }else{
+    tasca.pendent=0;
+    //console.log(tasca); */
   }
+  /*}*/
   async desmarcarTasca(id, pendent) {
     const tasca = this._llista[id];
     if (tasca.pendent==0){

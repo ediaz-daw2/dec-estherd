@@ -1,5 +1,8 @@
 const inquirer = require("inquirer");
+
+
 require("colors");
+
 
 const preguntes = [
   {
@@ -156,6 +159,7 @@ const tascaSelect2 = async (tasques = []) => {
   return id;
 };
 
+
 const confirmar = async(message) => {
   
   const question=[
@@ -170,28 +174,30 @@ const confirmar = async(message) => {
 };
 
 
-const opcions = async (tasques = []) => {
+const opcions = async (tasques=[]) => {
+  
+  const choices = tasques.map((tasca, i) => {
+    const idx = `${i + 1}.`.green;
+    const pen = `${tasca.pendent}` > 0 ? "Completada".green : "pendent".red;
+    return {
+      value: tasca.id,
+      name: `${idx} ${tasca.nom} :: `+pen.gray,
+    };
+  });
   const check=[
     {
       type:'checkbox',
-      name: 'checkbox question',
-      message: "Escull les tasques que vols Completar",
-      choices:[
-        tascaSelect2()
-      ]
+      name: 'ids',
+      message: 'Escull les tasques que vols completar',
+      choices 
     },
   ];
-  const { id } = await inquirer.prompt(check);
-  const tasca = this._llista[id];
-    if (tasca.pendent==1){
-      console.log("(Aquesta tasca ja estaba completada)".gray);
-    }else{
-    tasca.pendent=1;
-    //console.log(tasca);
-    return tasca.nom;
-  } 
-}
 
+  const {ids}= await inquirer.prompt(check);
+  
+  return ids;
+}
+/*
 
 //CHECK
 

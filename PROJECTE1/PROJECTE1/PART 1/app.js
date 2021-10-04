@@ -53,7 +53,8 @@ const main = async () => {
       case "5":
         //Completar tasques
         
-        const opci= await opcions();
+        const opci= await opcions(tasques.llistatArr);
+        tasques.completarTasca(opci,tasques.pendent);
         
         /* const id4 = await tascaSelect2(tasques.llistatArr);
         if (id4!=='0'){
