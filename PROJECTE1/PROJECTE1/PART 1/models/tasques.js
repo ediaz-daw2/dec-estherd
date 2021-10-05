@@ -121,13 +121,17 @@ llistarTasquesPendents() {
   }
 
 
-  async completarTasca(id,pend) {
-    console.log(id.length);
-    for (let i = 0; i <= id.length; i++) {
+  async completarTasca(id) {
+    console.log(id);
+    for (let i = 0; i < id.length; i++) {
       const tasca = this._llista[id[i]];
+      if (tasca.pendent!=0){
+        tasca.pendent=0;
+        console.log(tasca);
+      }else{
       tasca.pendent=1;
+      }
     }
-    return tasca;
 
     //tasca.pendent=1;
     /*const tasca = this._llista[id];
