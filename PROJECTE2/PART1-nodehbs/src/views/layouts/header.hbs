@@ -1,0 +1,49 @@
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">MyNTLFX</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarCollapse"
+        aria-controls="navbarCollapse"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link {{#if active.Home}}active{{/if}}" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{#if active.Serveis}}active{{/if}}" aria-current="page" href="/serveis">Serveis</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{#if active.Cataleg}}active{{/if}}" aria-current="page" href="/cataleg">Catàleg</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{#if active.Enquesta}}active{{/if}}" aria-current="page" href="/enquesta">Enquesta</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{#if active.QuiSom}}active{{/if}}" aria-current="page" href="/quiSom">Qui Som?</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{#if active.Contacte}}active{{/if}}" aria-current="page" href="/contacte">Contacte</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{#if active.Logo}}active{{/if}}" aria-current="page" href="/logo">Logo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{#if active.Perfil}}active{{/if}}" aria-current="page" href="/perfil">Perfil</a>
+          </li>
+        </ul>
+        <form class="d-flex mb-2 mb-md-0">
+          <button class="btn btn-outline-success" type="submit">LOGIN</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+</header>
