@@ -84,7 +84,7 @@ const novaReservaColumna = async (message) => {
       message,
       validate(value) {
         if (value.length === 0) {
-          return "Quina columna?: ";
+          return "Quina seient?: ";
         }
         return true;
       },
@@ -147,7 +147,7 @@ const reservaSelect2 = async (reserves = []) => {
     const idx = `${i + 1}.`.green;
     return {
       value: reserva.id,
-      name: `${idx} ${reserva.fila} :: ${reserva.columna}`,
+      name: `${idx} Fila: ${reserva.fila} / Seient: ${reserva.columna}`,
     };
   });
 

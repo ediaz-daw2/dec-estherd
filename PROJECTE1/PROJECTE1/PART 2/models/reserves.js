@@ -24,7 +24,7 @@ class Reserves {
     this._llista = {};
   }
 
-  crearReserva(fila = "", columna="") {
+  crearReserva(reserves = [],fila = "", columna="") {
     if ( fila>=6 || columna>=6){
       console.log("Però no existeix aquest seient!!!".red);
     }else{
@@ -59,26 +59,93 @@ class Reserves {
 //
 //  }
 
-  llistarReserves() {
-    this.llistatArr.forEach((reserva) => {
-    const { fila, columna } = reserva;
-    console.log();
-    let conta = 0;
-    let arr_seients=[5][5];
 
-    for (let i = 0; i <=5; i++) {
-      for (let h = 0; h <=5; h++) {
-        if(fila==h){
-          arr_seients[i][h]=fila;
-          console.log(arr_seients);
-        }
-      }
-      if(columna==i){
-        arr_seients[i][h]=columna;
-        console.log(arr_seients);
-      }
-      
-    }
+  llistarReserves() {
+    var fi1 = [""];
+    var fi2 = [""];
+    var fi3 = [""];
+    var fi4 = [""];
+    var fi5 = [""];
+    var fi6 = [""];
+    var fi7 = [""];
+    var fi8 = [""];
+
+//Introducir
+
+  for (let but = 1; but < 9; but++) {
+    fi1[but]="■ ".green;
+    fi2[but]="■ ".green;
+    fi3[but]="■ ".green;
+    fi4[but]="■ ".green;
+    fi5[but]="■ ".green;
+    fi6[but]="■ ".green;
+  };
+
+    for (let but = 1; but < 9; but++) {
+      this.llistatArr.forEach((reserves) => {
+       const { fila, columna } = reserves;
+  
+      if (fila == "1" && but == columna) {
+      fi1[but]="■ ".red;
+     }else if (fila == "2" && but == columna) {
+      fi2[but]="■ ".red;
+     }else if (fila == "3" && but == columna) {
+      fi3[but]="■ ".red;
+     }else if (fila == "4" && but == columna) {
+      fi4[but]="■ ".red;
+     }else if (fila == "5" && but == columna) {
+      fi5[but]="■ ".red;
+     }else if (fila == "6" && but == columna) {
+      fi6[but]="■ ".red;
+     }
+  
+    });
+  }
+  
+  //Mostrar
+  console.log("")
+  console.log("-----------")
+  console.log("")
+  
+  for (let fi = 0; fi < 7; fi++) {
+    process.stdout.write(fi1[fi]); 
+  
+  };
+  console.log("");
+  for (let fi = 0; fi < 7; fi++) {
+   
+    process.stdout.write(fi2[fi]); 
+  
+  };
+  console.log("");
+  for (let fi = 0; fi < 7; fi++) {
+  
+    process.stdout.write(fi3[fi]);
+  
+  };
+  console.log("");
+  for (let fi = 0; fi < 7; fi++) {
+  
+    process.stdout.write(fi4[fi]);
+  
+  };
+  console.log("");
+  for (let fi = 0; fi < 7; fi++) {
+  
+    process.stdout.write(fi5[fi]);
+  };
+  console.log("");
+  for (let fi = 0; fi < 7; fi++) {
+  
+    process.stdout.write(fi6[fi]);
+  
+  };
+  console.log("");
+  console.log("");
+  console.log("--/--------");
+  
+};
+
   
     /* this.llistatArr.forEach((reserva) => {
       const { fila, columna } = reserva;
@@ -87,8 +154,7 @@ class Reserves {
       console.log(
         `${(conta + ".").green} ${"Fila:".yellow} ${(fila + "").cyan} ${"::".green} ${(columna + "").cyan}`
       ); */
-    });
-  }
+
 
 
   async completarReserva(id) {

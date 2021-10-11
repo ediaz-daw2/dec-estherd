@@ -32,7 +32,7 @@ const main = async () => {
         const nouReservafil = await novaReservaFila("Escull fila:");
         const nouReservacol = await novaReservaColumna("Escull columna:");
         console.log("Has escollit la fila "+nouReservafil+" y la columna "+nouReservacol);
-        reserves.crearReserva(nouReservafil, nouReservacol);
+        reserves.crearReserva(reserves.llistatArr,nouReservafil, nouReservacol);
         break;
 
       case "2":
