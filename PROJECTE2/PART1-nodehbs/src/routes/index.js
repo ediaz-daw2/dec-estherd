@@ -6,7 +6,7 @@ const app = express();
 const bodyParser = require('body-parser');
 
 var serviceAccount = require("../myntflx-be435-firebase-adminsdk-75lnu-e69cb15097.json");
-const { rawListeners } = require('../app');
+const { rawListeners, request } = require('../app');
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: 'https://myntflx-be435-default-rtdb.firebaseio.com/'
@@ -72,28 +72,64 @@ router.use((req,res,next)=>{
     next()
 })
 
-router.get('/',(req, res) => {
-// Anire a la BBDD i agafare el que minteressi,
-// Crearé un objecte i el pasaré al render}
-const {user}=res.locals;
-    console.log(req.session);
-    res.send(`
-        <h1>Welcome!</h1>
-        ${user ? `
-        <a href='/home'>Home</a>
-        <form method='post' action='/logout'>
-            <button>Logout</button>
-        </form>
-        `:`
-        <a href='/login'>LOGIN</a>
-        <a href='/register'>Register</a>
-        `}
 
-    `)
-    app.get('/perfil',redirectLogin,(req,res)=>{
+router.get('/',(req, res) => {
+    // Anire a la BBDD i agafare el que minteressi,
+    // Crearé un objecte i el pasaré al render}
+    const {userID}=req.session;
+    if(userID){
+        res.locals.user=users.find(
+            user=> user.id===userID
+        )
+    }
+    console.log(req.session);
+    res.render('home',{
+        title: "Home", 
+        active: {Home: true},
+        user: {userID}
+    });
+});     
+
+
+router.get('/perfil',redirectLogin,(req,res)=>{
         const {user}=res.locals;
 
-    })
+});
+
+
+
+
+router.get('/',(req, res) => {
+    // Anire a la BBDD i agafare el que minteressi,
+    // Crearé un objecte i el pasaré al render}
+    console.log(req.session);
+    res.render('home',{
+        title: "Home", 
+        active: {Home: true}
+    });
+    
+    
+    const {user}=res.locals;
+        res.send(`
+            <h1>Welcome!</h1>
+            ${user ? `
+            <a href='/home'>Home</a>
+            <form method='post' action='/logout'>
+                <button>Logout</button>
+            </form>
+            `:`
+            <a href='/login'>LOGIN</a>
+            <a href='/register'>Register</a>
+            `}
+    
+        `)
+        app.get('/perfil',redirectLogin,(req,res)=>{
+            const {user}=res.locals;
+    
+        })
+});     
+
+    
 
     /*
     if({userID}==1){
@@ -110,6 +146,13 @@ const {user}=res.locals;
         });
     }
     */
+
+
+router.get('/home',(req, res) => {
+    res.render('home',{
+        title: "Home", 
+        active: {Home: true}
+    });
 });
 
 router.get('/serveis',(req, res) => {
@@ -175,14 +218,42 @@ router.post('/nou-element',(req, res) => {
 });
 
 router.get('/register',redirectHome,(req, res) => {
-    res.render('register',{
-        title: "REGISTRA'T", 
-        active: {Register: true}
-    });
+    
+
+    console.log(req.session);
+        res.render('register',{
+            title: "REGISTRA'T", 
+            active: {Register: true}
+        });
+});
+
+router.post('/register',redirectHome,(req, res) => {
+    const {nom,password}=req.body;
+
+    if(nom && password){
+        const exists=users.some(
+            user=>user.nom===nom
+        )
+        if (!exists){
+            const user={
+                id: users.length+1,
+                nom,
+                password
+            }
+            users.push(user)
+
+            req.session.userID= user.id
+            return res.redirect('/home')
+        }
+    } 
+    res.redirect('register')
 });
 
 router.get('/login',(req, res) => {
+    const {user}=res.locals;
+    console.log(req.session);
         res.render('login',{
+        user:`${user}`,
         title: "ADMIN login", 
         active: {Login: true}
     });
@@ -208,6 +279,16 @@ router.get('/logout',redirectLogin,(req, res) => {
         active: {Logout: true}
     });
 });
+
+router.post ('/logout', redirectLogin,(req,res) =>{
+    req.session.destroy(err =>{
+        if (err){
+            return res.redirect('/home')
+        }
+        res.clearCookie(SESS_NAME)
+        res.redirect('/login')
+    })
+})
 
 router.get('/perfil',(req, res) => {
     res.render('perfil',{
