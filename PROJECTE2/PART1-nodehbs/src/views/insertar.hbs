@@ -1,0 +1,103 @@
+---
+layout: examples
+title: Signin Template
+extra_css: "signin.css"
+body_class: "text-center"
+include_js: false
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/assets/css/login.css">
+    <style>
+        html,
+        body {
+        height: 100%;
+        }
+        body {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #ffffff;
+        }
+
+        .form-signin {
+        width: 100%;
+        max-width: 450px;
+        padding: 15px;
+        margin: auto;
+
+        }
+        .form-signin .checkbox {
+        font-weight: 400;
+        }
+        .form-signin .form-control {
+        position: relative;
+        box-sizing: border-box;
+        height: auto;
+        padding: 10px;
+        font-size: 16px;
+        }
+        .form-signin .form-control:focus {
+        z-index: 2;
+        }
+        .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+        }
+        .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        }
+
+    </style>
+    <title>Document</title>
+</head>
+<body>
+
+
+    <form action="/nou-element" class="form-signin" style="margin-top:50px;"  method="POST">
+        <h1 class="h3 mb-3 font-weight-normal" style="font-size: 50px;">{{title}}</h1>
+        <label for="inputNom" class="sr-only">Pelicula/Serie</label>
+        <input name="nom" type="Nom" id="inputNom" class="form-control" placeholder="Nom de la pelicula/serie" required autofocus><br>
+        <label for="inputGenere" class="sr-only">Gènere</label>
+        <input name="genere" type="genere" id="inputGenere" class="form-control" placeholder="Gènere de la pelicula/serie" required><br>
+        <div class="checkbox mb-3">
+        <label for="inputNota" class="sr-only">Nota (0-10)</label>
+        <input name="nota" type="nota" id="inputNota" class="form-control" placeholder="Quina nota li poses?" required><br>
+        <div class="checkbox mb-3">
+        </div>
+        <button class="btn btn-lg btn-primary btn-block col-12" type="submit">AFEGIR</button>
+    </form>
+            <div class="row">
+            <div class="col-12" style="margin-top: 50px;">
+                {{#if elements}}
+                    <ul class="list-group">
+                    {{#each elements}}
+                            <li class="list-group-item d-flex justify-content-between">
+                                {{@key}}
+                                {{Nom}} /
+                                {{Genere}} /
+                                {{Nota}}
+                                <a style="margin-left: 2px;" href="/delete-element/{{@key}}" class="btn btn-danger">
+                                    Eliminar
+                                </a>
+                            </li>  
+                    {{/each}}
+                    </ul>
+                {{else}}
+                <h3>encara no hi han elements</h3>
+                {{/if}}
+            </div>
+        </div><br><br>
+</body>
+</html>
+

@@ -1,12 +1,43 @@
 const express= require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
+const morgan = require('morgan');
 const session = require('express-session');
+
+const TWO_HOURS = 1000*60*60*2
+
+const users=[
+    {id:1, name:'Esther', password:'1234'},
+    {id:2, name:'Irene', password:'1234'}
+
+]
 
 const app = express();
 
 // settings
-app.set('port', process.env.PORT || 3030);
+const {
+    PORT=3030,
+    SESS_LIFETIME=TWO_HOURS,
+    NODE_ENV = 'development',
+    SESS_NAME= 'sid',
+    SESS_SECRET='ssh!quiet,it\'asecret!'
+} = process.env
+
+const IN_PROD =NODE_ENV==='production';
+
+//SESSION
+app.use(session({
+    name: SESS_NAME,
+    resave: false,
+    saveUninitialized: false,
+    secret: SESS_SECRET,
+    cookie:{
+        maxAge: SESS_LIFETIME,
+        sameSite: true,
+        secure: IN_PROD
+    }
+}))
+
 
 
 // li diem al node on es troben els views.
@@ -22,6 +53,9 @@ app.engine('.hbs', exphbs({
 }));
 
 app.set('view engine','.hbs');
+
+//middleware
+app.use(morgan('dev'));
 
 // routes
 app.use

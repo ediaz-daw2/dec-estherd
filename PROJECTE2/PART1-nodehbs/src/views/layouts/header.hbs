@@ -32,16 +32,20 @@
           </li>
           <li class="nav-item">
             <a class="nav-link {{#if active.Contacte}}active{{/if}}" aria-current="page" href="/contacte">Contacte</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link {{#if active.Logo}}active{{/if}}" aria-current="page" href="/logo">Logo</a>
-          </li>
           <li class="nav-item">
             <a class="nav-link {{#if active.Perfil}}active{{/if}}" aria-current="page" href="/perfil">Perfil</a>
           </li>
+          <li class="nav-item">
+              <a class="login nav-link {{#if active.Perfil}}active{{/if}} " aria-current="page" href="/insertar" style="color: rgb(98, 245, 255); margin-left:5px; border:solid rgb(98, 245, 255) 2px;" >INSEREIX</a>
+          </li>
         </ul>
         <form class="d-flex mb-2 mb-md-0">
-          <button class="btn btn-outline-success" type="submit">LOGIN</button>
+          <ul>
+
+            <li class="nav-item">
+              <a class="login nav-link {{#if active.Perfil}}active{{/if}}" aria-current="page" href="/login" style="color: rgb(255, 98, 98); margin-top: 10px; border:solid rgb(255, 98, 98) 2px;" >LOGIN</a>
+            </li>
+          </ul>
         </form>
       </div>
     </div>
