@@ -61,7 +61,7 @@ include_js: false
     <title>Document</title>
 </head>
 <body>
-    <form class="form-signin" method="post" action="/register">
+    <form class="form-signin" action="/nou-usuari" method="POST">
     <h1 class="h3 mb-3 font-weight-normal" style="font-size: 50px;">{{title}}</h1>
     <label for="inputNom" class="sr-only">Nom</label>
     <input type="text" name="nom" id="inputNom" class="form-control" placeholder="Nom Usuari" required autofocus><br>
@@ -71,5 +71,24 @@ include_js: false
     </div>
     <input class="btn btn-lg btn-primary btn-block col-12" type="submit" value="Entrar"/><br><br>
     </form>
+    <div class="row">
+            <div class="col-12" style="margin-top: 50px;">
+                {{#if usuaris}}
+                    <ul class="list-group">
+                    {{#each usuaris:}}
+                            <li class="list-group-item d-flex justify-content-between">
+                                {{@key}}
+                                {{nom}} /
+                                {{password}}
+                                <a style="margin-left: 2px;" href="/delete-element/{{@key}}" class="btn btn-danger">
+                                    Eliminar
+                                </a>
+                            </li>  
+                    {{/each}}
+                    </ul>
+                {{else}}
+                <h3>encara no hi han elements</h3>
+                {{/if}}
+            </div>
 </body>
 </html>

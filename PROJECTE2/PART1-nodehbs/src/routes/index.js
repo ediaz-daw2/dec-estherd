@@ -1,3 +1,7 @@
+//instalar mongodb, cheat sheet (gestio desde terminal de mongodb), instalar i configurar en local Robo 3T, crear BD nosql de proves
+// crear base de dades mongodb Atlas
+// postman per a aracar al servidor nodejs + express
+
 const express = require('express');
 const router = express.Router();
 const admin=require('firebase-admin');
@@ -74,6 +78,22 @@ router.use((req,res,next)=>{
 
 
 router.get('/',(req, res) => {
+    const {userID}=req.session;
+    if(userID){
+        res.locals.user=users.find(
+            user=> user.nom===userID
+        )
+    }
+    console.log(req.session);
+    res.render('home',{
+        title: "Home", 
+        active: {Home: true},
+        user: {userID}
+    });
+});    
+
+/*
+router.get('/',(req, res) => {
     // Anire a la BBDD i agafare el que minteressi,
     // Crearé un objecte i el pasaré al render}
     const {userID}=req.session;
@@ -89,45 +109,14 @@ router.get('/',(req, res) => {
         user: {userID}
     });
 });     
-
+*/
 
 router.get('/perfil',redirectLogin,(req,res)=>{
         const {user}=res.locals;
 
 });
 
-
-
-
-router.get('/',(req, res) => {
-    // Anire a la BBDD i agafare el que minteressi,
-    // Crearé un objecte i el pasaré al render}
-    console.log(req.session);
-    res.render('home',{
-        title: "Home", 
-        active: {Home: true}
-    });
-    
-    
-    const {user}=res.locals;
-        res.send(`
-            <h1>Welcome!</h1>
-            ${user ? `
-            <a href='/home'>Home</a>
-            <form method='post' action='/logout'>
-                <button>Logout</button>
-            </form>
-            `:`
-            <a href='/login'>LOGIN</a>
-            <a href='/register'>Register</a>
-            `}
-    
-        `)
-        app.get('/perfil',redirectLogin,(req,res)=>{
-            const {user}=res.locals;
-    
-        })
-});     
+   
 
     
 
@@ -218,47 +207,75 @@ router.post('/nou-element',(req, res) => {
 });
 
 router.get('/register',redirectHome,(req, res) => {
-    
+    db.ref('usuaris').once('value',(snapshot)=>{
+        const usuari = snapshot.val();
 
     console.log(req.session);
         res.render('register',{
             title: "REGISTRA'T", 
-            active: {Register: true}
+            active: {Register: true},
+            usuaris: usuari
         });
+    });
 });
 
-router.post('/register',redirectHome,(req, res) => {
-    const {nom,password}=req.body;
 
-    if(nom && password){
-        const exists=users.some(
-            user=>user.nom===nom
-        )
-        if (!exists){
-            const user={
-                id: users.length+1,
-                nom,
-                password
-            }
-            users.push(user)
+router.post('/nou-usuari',(req, res) => {
+    const nouUsuari ={
+        Nom: req.body.nom,
+        Password: req.body.password,
+    }
+    console.log(nouUsuari);
+    db.ref('usuaris').push(nouUsuari);
+    res.redirect('/login');
 
-            req.session.userID= user.id
-            return res.redirect('/home')
-        }
-    } 
-    res.redirect('register')
 });
 
 router.get('/login',(req, res) => {
-    const {user}=res.locals;
-    console.log(req.session);
+    db.ref('elements').once('value',(snapshot)=>{
+       const user = snapshot.val();
         res.render('login',{
         user:`${user}`,
         title: "ADMIN login", 
         active: {Login: true}
     });
+    });
 });
 
+
+/*
+router.get('/login',(req, res) => {
+    const {user}=res.locals;
+    res.render('login',{
+        user:`${user}`,
+        title: "ADMIN login", 
+        active: {Login: true}
+    });
+});
+*/
+
+router.post('/login',redirectHome,(req, res) => {
+    const{nom, password}=req.body
+
+    db.ref('usuaris').once('value',(snapshot)=>{
+    const users=(Object.values(snapshot.val()));
+    
+     if(nom&&password){
+         const usuaris= users.find(
+            users=> users.Nom ===nom && users.Password === password
+         )
+         if(usuaris){
+            req.session.userID=users.nom;
+            
+            return res.redirect('/')
+         }
+     }
+     res.redirect('/login');
+});
+});
+
+
+/*
 router.post('/login',redirectHome,(req, res) => {
     const{nom, password}=req.body
 
@@ -273,6 +290,7 @@ router.post('/login',redirectHome,(req, res) => {
     }
     res.redirect('/login');
 });
+*/
 
 router.get('/logout',redirectLogin,(req, res) => {
     res.render('logout',{

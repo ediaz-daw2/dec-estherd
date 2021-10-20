@@ -1,16 +1,24 @@
 const express = require("express");
+const{dbConnection}=require('../database/config')
 
 class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT;
-    this.usuarisPath = "/api";
+    this.apiPath = "/api";
+
+    // Connectar a la base de dades
+    this.conectarDB();
 
     // Middlewares
     this.middlewares();
 
     // Rutes de l'aplicació
     this.routes();
+  }
+
+  async conectarDB(){
+    await dbConnection();
   }
 
   middlewares() {
@@ -22,7 +30,7 @@ class Server {
   }
 
   routes() {
-    this.app.use(this.usuarisPath, require("../routes/usuaris"));
+    this.app.use(this.apiPath, require("../routes/usuaris"));
   }
 
   listen() {
