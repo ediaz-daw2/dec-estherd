@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <style>
+        .row{
+            color: black;
+            margin-top: -30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="text-align: center;">
+        {{#each user}} 
+        <div class="row">
+            <div class="col-12">
+                <img src={{Img}} width="200px" style="border-radius: 100%;" alt="">
+            </div>
+            <div class="col-12">
+                <h1 style="color: red;">
+                {{Nom}}
+                </h1>
+                {{#if Admin}}
+                <p style="margin-top: -20px;">(admin)</p>
+                {{/if}}
+                <br><h2>
+                    Les recomanacions especials de {{Nom}} són: </h2>
+                                {{/each}}
+                                <div class="album py-5 bg-light">
+                                    <div class="container">
+                                        <div class="row">
+                                        {{#each element}}
+                                        <div class="col-md-4">
+                                            <div class="card mb-4 shadow-sm">
+                                            <img src={{Img}} alt="">
+                                            <div class="card-body">
+                                                <h3>{{NomEl}}</h3>
+                                                <p style="color: red;">{{Genere}}</p>
+                                                <p class="card-text">{{Sinopsi}}</p>
+                                                <span class="col-6" style="text-align:right; font-size: 40px; color:red;">{{Nota}}</span></p>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                <div class="btn-group">
+                                                </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        {{/each}}
+                                        </div>
+                                    </div>
+                                </div>
+
+            </div>
+        </div>
+    </div>
+<!-- 
+    <h1 style="margin-top: 50px !important;">
+        Aquest usuari es 
+        {{#each user}} 
+        
+        <img src={{Img}} alt="">
+        {{/each}}
+    </h1>
+-->
+</body>
+</html>

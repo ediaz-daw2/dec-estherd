@@ -18,20 +18,23 @@ include_js: false
         height: 100%;
         }
         body {
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-align: center;
-        align-items: center;
-        padding-top: 40px;
-        padding-bottom: 40px;
-        background-color: #ffffff;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        background-image: url(https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/styles/1200/public/media/image/2020/09/netflix-2084279.jpg?itok=ElXHgN-6);
+
         }
 
         .form-signin {
-        width: 100%;
-        max-width: 330px;
-        padding: 15px;
+        width: 500px;
+        height: 500px;
+        padding: 55px;
         margin: auto;
+        background-color: black;
+        border-radius: 50px;
         }
         .form-signin .checkbox {
         font-weight: 400;
@@ -62,10 +65,10 @@ include_js: false
 </head>
 <body>
     <form class="form-signin" method="post" action="/login">
-    <h1 class="h3 mb-3 font-weight-normal" style="font-size: 50px;">{{title}}</h1>
-    <label for="inputNom" class="sr-only">Nom</label>
+    <h1 class="h3 mb-3 font-weight-normal" style="font-size: 50px; text-align:center; color:red;">{{title}}</h1>
+
     <input type="text" name="nom" id="inputNom" class="form-control" placeholder="Nom Usuari" required autofocus><br>
-    <label for="inputPassword" class="sr-only">Password</label>
+
     <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required><br>
     <div class="checkbox mb-3">
     </div>

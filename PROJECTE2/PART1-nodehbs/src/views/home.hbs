@@ -10,13 +10,16 @@
         <div class="carousel-inner">
         <div class="carousel-item active">
     <!-- imagen -->
-    <img src="./main_carr.jpg" alt="imatge" width="100%" height="600px">
+    <img src="https://help.nflxext.com/0af6ce3e-b27a-4722-a5f0-e32af4df3045_what_is_netflix_5_en.png" alt="imatge" width="100%" height="900px">
                 <div class="container">
                 <div class="carousel-caption text-left">
-                    <h1>AEA-0</h1>
+                    {{#if user.userID}}
+                    <h1 style="color: rgb(255, 255, 255);">Benvolgut {{#each user}} {{Nom}}{{#if Admin}} (ADMIN){{/if}}{{/each}} </h1> 
                     
-                    <h4 style="color: white;">Solució de preguntes teòriques sobre NodeJS</h4>
-                    <p><a class="btn btn-lg btn-primary" href="aea-0.html" role="button" style="background-color: rgb(18, 16, 107); border-color: purple;">Anar a la pràctica</a></p>
+                    {{else}}
+                    <h1 style="color: white;">Benvolgut</h1>
+                    {{/if}}
+                    <h4 style="color: white;">Les teves pel·lícules i series favorites de NETFLIX</h4><br><br>
                 </div>
                 </div>
             </div>
@@ -31,50 +34,59 @@
                 </div>
             </div>  -->
             </div> 
-        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-        </div>
-            <h1>{{title}}</h1>
-            <h3>{{txt}}</h3> 
+            <!--
+            <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only"></span>
+            </a>
+            <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only"></span>
+            </a> -->
+            </div>
+
         </div>
     </div>
-
     <div class="row">
-        <div class="fondo col-lg-3 col-md-4 col-sm-6 ">
+        <div style="text-align: center;">
+            <h1 class="col-12" style="color:red">{{title}}</h1>
+            <h3 class="col-12" style="color:red">{{text}}</h3>
+        </div>
+    </div>
+    <div class="row" style="text-align: center;">
+        <div class="fondo col-lg-3 col-md-4 col-sm-6" style="padding: 20px;">
 <!--        <img src="" alt="hdf" width="90px"> -->
-            <h2>Lorem, ipsum dolor.</h2>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim, dolores.</p>
-            <p><a class="btn btn-secondary" href="personajes.html" role="button">Lorem, ipsum dolor.</a></p>
+            <h2>SERVEIS</h2>
+            <p>Que hem podeu oferir? Que puc fer aquí? Té utilitat personal? Podré personalitzar la meva pàgina?</p>
+            <p><a class="btn btn-secondary" href="/serveis" role="button">AVERIGUA-HO <img style="width: 30px;" src="https://img.icons8.com/ios/50/000000/nui2.png"/></a></p>
         </div><!-- /.col-lg-4 col-md-6 col-sm-12  -->
-        <div class="fondo col-lg-3 col-md-4 col-sm-12 " class="">
+        <div class="fondo col-lg-3 col-md-4 col-sm-12" style="padding: 20px;" >
 <!--        <img src="" alt="gola" width="70px"> -->
-            <h2>Lorem, ipsum dolor.</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, esse! </p>
-            <p><a class="btn btn-secondary" href="objetos.html" role="button">Lorem, ipsum dolor.</a></p>
-        </div><!-- /.fondo col-lg-4 col-md-6 col-sm-12   class=""-->
-        <div class="fondo col-lg-3 col-md-4 col-sm-12 " class="">
+            <h2>CATÀLEG</h2>
+            <p>Coneix les pel·lícules i series de NETFLIX que ho están petant! Troba les teves favorites, i fes una ullada a la cartelera.</p>
+            <p><a class="btn btn-secondary" href="/cataleg" role="button">EXPLORAR <img style="width:30px" src="https://img.icons8.com/ios/50/000000/movie--v2.png"/></a></p>
+        </div><!-- /.fondo col-lg-4 col-md-6 col-sm-12  -->
+        <div class="fondo col-lg-3 col-md-4 col-sm-12 " style="padding: 20px;">
 <!--        <img src="" alt="gs" width="80px"> -->
-            <h2>Lorem, ipsum dolor.</h2>
+            <h2>QUI SOM?</h2>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, quas?</p>
-            <p><a class="btn btn-secondary" href="fondos.html" role="button">Lorem, ipsum dolor.</a></p>
+            <p><a class="btn btn-secondary" href="/quisom" role="button">SABER-NE MÉS <img style="width: 30px;" src="https://img.icons8.com/ios/50/000000/question-mark--v1.png"/></a></p>
         </div><!-- /.row -->
-        <div class="fondo col-lg-3 col-md-4 col-sm-12 " class="">
+        <div class="fondo col-lg-3 col-md-4 col-sm-12 "style="padding: 20px;">
 <!--        <img src="" alt="gs" width="80px"> -->
-            <h2>Lorem, ipsum dolor.</h2>
+            <h2>CREA'T UN COMPTE!</h2>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, quas?</p>
-            <p><a class="btn btn-secondary" href="fondos.html" role="button">Lorem, ipsum dolor.</a></p>
+            <p><a class="btn btn-secondary" href="login" role="button">UNIR-ME <img style="width: 30px;" src="https://img.icons8.com/ios/50/000000/user--v1.png"/></a></p>
         </div><!-- /.row -->
-      
-      
+
+
           <!-- START THE FEATURETTES -->
       
-<hr class="featurette-divider">       
     </div>
+    <hr class="featurette-divider" style="margin-top: 50px;"><br><br>
+        <div style="text-align: center;">
+            <h3 class="col-12" style="color:red">Tens algun dubte, sugeréncia o reclamació?</h3><br>
+            <a class="btn btn-secondary" href="login" role="button">CONTACTA AMB NOSALTRES <img style="width: 30px;" src="https://img.icons8.com/ios/50/000000/user--v1.png"/></a>
+        </div>  <br><br>
 </main>
 </body>

@@ -1,7 +1,8 @@
+
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">MyNTLFX</a>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark menu" data-animation="center" style="background-color: black!important">
+    <div class="container-fluid" >
+      <a class="navbar-brand" href="#" style="color: red;">MyNTLFX</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -13,9 +14,9 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="collapse navbar-collapse" id="navbarCollapse" >
         {{#if user.userID}}
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0" >
           <li class="nav-item">
             <a class="nav-link {{#if active.Home}}active{{/if}}" aria-current="page" href="/">Home</a>
           </li>
@@ -37,16 +38,23 @@
           <li class="nav-item">
             <a class="nav-link {{#if active.Perfil}}active{{/if}}" aria-current="page" href="/perfil">Perfil</a>
           </li>
-          <li class="nav-item">
-              <a class="login nav-link {{#if active.Perfil}}active{{/if}} " aria-current="page" href="/insertar" style="color: rgb(98, 245, 255); margin-left:5px; border:solid rgb(98, 245, 255) 2px;" >INSEREIX</a>
+          {{#each user}}
+          {{#if Admin}}
+          <li class="nav-item"> 
+              <a class="login nav-link {{#if active.Insertar}}active{{/if}} " aria-current="page" href="/insertar" style="color: rgb(255, 255, 255); margin-left:5px; border:solid rgb(255, 255, 255) 2px;" >INSEREIX</a>
           </li>
+          {{/if}}
+          
         </ul>
         <form class="d-flex mb-2 mb-md-0">
+              <img src={{Img}} href="/perfil" alt="pp" style="width: 50px; height:50px; margin-top:6px; margin-right:-10px; border-radius:100%">
           <ul>
+
             <li class="nav-item">
-              <a class="login nav-link {{#if active.Logout}}active{{/if}}" aria-current="page" href="/logout" style="color: rgb(255, 98, 98); margin-top: 10px; border:solid rgb(255, 98, 98) 2px;" >LOGOUT</a>
+              <a class="login nav-link {{#if active.Logout}}active{{/if}}" aria-current="page" href="/logout" style="color: #ff1e1e; margin-top: 10px; border:solid rgb(255, 22, 22) 2px; width:90px; text-align:center; margin-right:10px" >LOGOUT</a>
             </li>
           </ul>
+          {{/each}}
         
         </form>
 
@@ -74,7 +82,7 @@
           <ul>
 
             <li class="nav-item">
-              <a class="login nav-link {{#if active.Login}}active{{/if}}" aria-current="page" href="/login" style="color: rgb(255, 98, 98); margin-top: 10px; border:solid rgb(255, 98, 98) 2px;" >LOGIN</a>
+              <a class="login nav-link {{#if active.Login}}active{{/if}}" aria-current="page" href="/login" style="color: rgb(255, 22, 22); margin-top: 10px; border:solid rgb(255, 22, 22) 2px; width:80px; text-align:center; margin-right:10px"  >LOGIN</a>
             </li>
           </ul>
         </form>

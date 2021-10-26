@@ -66,6 +66,7 @@ const redirectHome =(req,res,next)=>{
     }
 }
 
+
 router.use((req,res,next)=>{
     const {userID}=req.session;
     if(userID){
@@ -78,16 +79,17 @@ router.use((req,res,next)=>{
 
 
 router.get('/',(req, res) => {
+
     const {userID}=req.session;
     if(userID){
         res.locals.user=users.find(
-            user=> user.nom===userID
+            user=> user.nom===userID,
         )
     }
-    console.log(req.session);
     res.render('home',{
         title: "Home", 
         active: {Home: true},
+        text: "Que trobaràs en MyNTFLX?",
         user: {userID}
     });
 });    
@@ -111,81 +113,166 @@ router.get('/',(req, res) => {
 });     
 */
 
-router.get('/perfil',redirectLogin,(req,res)=>{
-        const {user}=res.locals;
+router.get('/perfil',redirectLogin,(req,res)=>{ 
+    db.ref('elements').once('value',(snapshot)=>{
+        //const element=(Object.values(snapshot.val()));
 
-});
+        const dades = snapshot.val();
+        //console.log(dades);
 
-   
+        const {userID}=req.session;
+        if(userID){
+            res.locals.user=users.find(
+                user=> user.nom===userID,
+            )
+        }
+        element={};
 
-    
-
-    /*
-    if({userID}==1){
-    res.render('index',{
-        title: "Pàgina principal",
-        txt: "miau",
-        active: {Home: true}
-    });
-    }else{
-        res.render('index',{
-            title: "PAAAA",
-            txt: "miau",
-            active: {Home: true}
+        for (const key in dades) {
+            if (Object.hasOwnProperty.call(dades, key)) {
+                const elements = dades[key];
+                if (elements.NomUser==userID.Nom){
+                    element[key]=dades[key];
+                }
+            }
+        }
+        /*
+        if(userID){
+                const elements= element.find(
+                   element=> element.NomUser ===userID.Nom
+                )
+                console.log(elements);
+        
+        */   
+            // let elements=[];
+            // element.forEach((element,index)=>{
+            //     if(element.NomUser===userID.Nom){
+            //         elements[index] = element;
+            //     }
+            // })
+            // var el = {};
+            // for (var i = 1; i < elements.length; ++i){
+            //     el[i] = elements[i]; 
+            // }
+            // var elem={};
+            // num=0;
+            // for (var i = 1; i < elements.length; ++i){
+            //     if (el[i]!=undefined){
+            //         elem[num]=el[i]; 
+            //         num++;
+            //     }else{
+                    
+            //     }
+            // }
+        console.log(element);
+            
+        res.render('perfil',{
+            title: "Perfil", 
+            active: {Perfil: true},
+            element,
+            user: {userID},
+            
         });
-    }
-    */
-
-
-router.get('/home',(req, res) => {
-    res.render('home',{
-        title: "Home", 
-        active: {Home: true}
+        //console.log("BBB", elem);
+        //console.log("CCC" ,{userID});
+        
     });
 });
+
+
+
 
 router.get('/serveis',(req, res) => {
+    
+    const {userID}=req.session;
+    if(userID){
+        res.locals.user=users.find(
+            user=> user.nom===userID,
+        )
+    }
     res.render('serveis',{
         title: "Serveis", 
-        active: {Serveis: true}
+        active: {Serveis: true},
+        user: {userID}
+        
     });
 });
 
 router.get('/cataleg',(req, res) => {
-    res.render('cataleg',{
-        title: "Cataleg", 
-        active: {Cataleg: true}
+    const {userID}=req.session;
+    if(userID){
+        res.locals.user=users.find(
+            user=> user.nom===userID,
+        )
+    }
+    db.ref('elements').once('value',(snapshot)=>{
+        const data = snapshot.val();
+        res.render('cataleg',{
+            title: "Cataleg", 
+            active: {Cataleg: true},
+            user: {userID},
+            elements: data
+        });
     });
 });
 
 router.get('/enquesta',(req, res) => {
+    const {userID}=req.session;
+    if(userID){
+        res.locals.user=users.find(
+            user=> user.nom===userID,
+        )
+    }
     res.render('enquesta',{
         title: "Enquesta", 
-        active: {Enquesta: true}
+        active: {Enquesta: true},
+        user: {userID}
     });
 });
 
 router.get('/quiSom',(req, res) => {
+    const {userID}=req.session;
+    if(userID){
+        res.locals.user=users.find(
+            user=> user.nom===userID,
+        )
+    }
     res.render('quiSom',{
         title: "Qui Som?", 
-        active: {QuiSom: true}
+        active: {QuiSom: true},
+        user: {userID}
     });
 });
 
 router.get('/contacte',(req, res) => {
+    const {userID}=req.session;
+    if(userID){
+        res.locals.user=users.find(
+            user=> user.nom===userID,
+        )
+    }
     res.render('contacte',{
         title: "Contacte", 
-        active: {Contacte: true}
+        active: {Contacte: true},
+        user: {userID}
+
     });
 });
 
 router.get('/insertar',redirectLogin,(req, res) => {
+    const {userID}=req.session;
+    if(userID){
+        res.locals.user=users.find(
+            user=> user.nom===userID,
+        )
+    }
     db.ref('elements').once('value',(snapshot)=>{
         const data = snapshot.val();
         res.render('insertar',{
-            title: "AFEGEIX UN ELEMENT",
-            active: {Login: true},
-            elements: data
+            title: "NOVA SÈRIE/PEL·LÍCULA",
+            active: {Insertar: true},
+            elements: data,
+            user: {userID}
         });
     })
 });
@@ -197,8 +284,11 @@ router.get('/delete-element/:id', (req,res)=>{
 
 router.post('/nou-element',(req, res) => {
     const nouElement ={
-        Nom: req.body.nom,
+        NomUser: req.body.nomuser,
+        NomEl: req.body.nomel,
+        Img: req.body.img,
         Genere: req.body.genere,
+        Sinopsi: req.body.sinopsi,
         Nota: req.body.nota
     }
     db.ref('elements').push(nouElement);
@@ -208,7 +298,7 @@ router.post('/nou-element',(req, res) => {
 
 router.get('/register',redirectHome,(req, res) => {
     db.ref('usuaris').once('value',(snapshot)=>{
-        const usuari = snapshot.val();
+    const usuari = snapshot.val();
 
     console.log(req.session);
         res.render('register',{
@@ -224,6 +314,8 @@ router.post('/nou-usuari',(req, res) => {
     const nouUsuari ={
         Nom: req.body.nom,
         Password: req.body.password,
+        Admin: req.body.admin,
+        Img: req.body.img
     }
     console.log(nouUsuari);
     db.ref('usuaris').push(nouUsuari);
@@ -232,11 +324,11 @@ router.post('/nou-usuari',(req, res) => {
 });
 
 router.get('/login',(req, res) => {
-    db.ref('elements').once('value',(snapshot)=>{
+    db.ref('usuaris').once('value',(snapshot)=>{
        const user = snapshot.val();
         res.render('login',{
         user:`${user}`,
-        title: "ADMIN login", 
+        title: "LOGIN", 
         active: {Login: true}
     });
     });
@@ -265,9 +357,10 @@ router.post('/login',redirectHome,(req, res) => {
             users=> users.Nom ===nom && users.Password === password
          )
          if(usuaris){
-            req.session.userID=users.nom;
+            req.session.userID=usuaris;
+            //console.log("AAA ",usuaris);
             
-            return res.redirect('/')
+            return res.redirect('/');
          }
      }
      res.redirect('/login');
@@ -293,12 +386,20 @@ router.post('/login',redirectHome,(req, res) => {
 */
 
 router.get('/logout',redirectLogin,(req, res) => {
+    const {userID}=req.session;
+    if(userID){
+        res.locals.user=users.find(
+            user=> user.nom===userID,
+        )
+    }
     res.render('logout',{
-        active: {Logout: true}
+        active: {Logout: true},
+        user: {userID}
     });
 });
 
 router.post ('/logout', redirectLogin,(req,res) =>{
+    
     req.session.destroy(err =>{
         if (err){
             return res.redirect('/home')
@@ -308,11 +409,5 @@ router.post ('/logout', redirectLogin,(req,res) =>{
     })
 })
 
-router.get('/perfil',(req, res) => {
-    res.render('perfil',{
-        title: "Perfil", 
-        active: {Perfil: true}
-    });
-});
 
 module.exports=router;
