@@ -25,6 +25,8 @@ include_js: false
         padding-top: 40px;
         padding-bottom: 40px;
         background-color: #000000;
+        background-image: url(https://i1.wp.com/www.sopitas.com/wp-content/uploads/2016/10/Asientos-Cine-Rojos.jpg);
+        background-size: cover;
         }
 
         .form-signin {
@@ -60,8 +62,18 @@ include_js: false
             padding: 15px!important;
             font-size: 20px!important;
         }
+        .au{
+            margin-top: 70px;
+            background-color: rgba(0, 0, 0, 0.445);
+            padding: 30px;
+        }
         .aaa{
-            background-image: url(https://www.creativefabrica.com/wp-content/uploads/2020/03/06/Red-Abstract-Background-Graphics-3185752-1-1-580x387.jpg);
+            padding-right: 150px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+
+
+            background-image: url(https://img.freepik.com/vector-gratis/marco-de-cuenta-atras-de-la-pelicula-antigua_9677-176.jpg?size/u003d338/u0026ext/u003djpg);
         }
 
     </style>
@@ -69,9 +81,11 @@ include_js: false
 </head>
 <body>
 <div class="conteiner">
-    <div class="row">
+    <div class="au row">
+        <div class="col-12" style="text-align: center;">
+            <h1 class="h3 mb-3 font-weight-normal" style="font-size: 50px; margin-top:20px">{{title}}</h1>
+        </div>
         <div class="aaa col-6">
-            <h1 class="h3 mb-3 font-weight-normal" style="font-size: 50px;">{{title}}</h1>
 
         </div>
         <div class="col-6">
@@ -87,7 +101,7 @@ include_js: false
                 <input name="nota" type="nota" id="inputNota" class="form-control" placeholder="Quina nota li poses?" required><br>
                 <div class="checkbox mb-3">
                 </div>
-                <button class="btn btn-lg btn-primary btn-block col-12" style="background-color: rgb(179, 0, 0); border-color:rgb(177, 0, 0)" type="submit">AFEGIR</button>
+                <button class="btn btn-lg btn-primary btn-block col-12" style="background-color: rgb(0, 0, 0); border-color:rgb(0, 0, 0); color:red; padding:20px; font-size:25px" type="submit">AFEGIR</button>
             </form>
         </div>
     </div>

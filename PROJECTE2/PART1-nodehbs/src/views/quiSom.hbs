@@ -7,6 +7,50 @@
     <title>Qui Som?</title>
 </head>
 <body>
-    
+<div class="container">
+  <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark" style="background-color: #87878752!important; margin-top:100px!important;">
+    <div class="col-md-8 px-0">
+      <h1 class="display-2 font-italic"><b>{{title}}</b></h1>
+      <p class="lead my-3">Benvolgut/Benvolguda {{#if user}}{{#each user}}{{Nom}} {{/each}}{{/if}}, vols saber qui som, i amb quin proòsit fem aquest entorn web? Llegeix-ho a continuació!</p>
+      {{#if user.userID}}
+      {{else}}
+      <br>
+      <p class="lead my-3" style="color: gray;">
+        <b>
+        Encara no t'has loguejat. Vols participar en la nostra web?...
+        </b>
+      </p>
+      <p class="lead mb-0"><a href="/login" class="text-white font-weight-bold" style="color: rgb(158, 0, 0)!important; text-decoration: none"><b>LOGIN</b></a></p>
+      {{/if}}
+    </div>
+  </div>
+</div>
+
+
+<main role="main" class="container" style="max-width: none; margin-left:240px; margin-right:-200px">
+    <div class="row">
+        <div class="col-md-8 blog-main">
+
+        <div class="blog-post">
+            <h2 class="blog-post-title" style="color: red;">Sobre Nosaltres</h2>
+            <p>Per començar, utilitzo la paraula "nosaltres" (en plural) per a fer veure aquesta pàgina molt més professional, com hi sería en un acabat final. En realitat soc una sola persona, alumne dev 2n grau superior de DAW, desenvolupant aquesta petita pàgina web, amb l'objectiu de cobrir els requisits demanats en una pràctica de la UF1 de MP12: Projecte de desenvolupament d'aplicacions web.</p>
+            <hr>
+
+        </div><!-- /.blog-main -->
+    </div><!-- /.row -->
+
+
+    <div class="row" style="align-items: right; text-align:right">
+        <div class="col-md-8 blog-main">
+        <div class="blog-post">
+            <h2 class="blog-post-title" style="color: red;">Propósit i objectiu</h2>
+
+            <p>El propòsit d'aquesta pàgina web, com anteriorment he comentat, sería realitzar una pàgina web que cumpleixi amb els requisits d'una pràctica de projecte. Per altre banda, l'objectiu d'aquesta pàgina sería que usuaris de tot el mon puguès compartir els seus gustos cinematogràfics, només basats en la plataforma de Netflix. Com a objectiu final, m'agués agradat fer un acabat més complet i polit a aquest projecte; com afegir més opcions per a les películes; posar comentaris, editar... més opcións d'editar perfil d'usuaris, i opcións de xat entre users per a poder debatre sobre les pel·lícules i sèries.</p>
+            <hr>
+        </div><!-- /.blog-main -->
+    </div>
+
+</main><!-- /.container -->
+
 </body>
 </html>

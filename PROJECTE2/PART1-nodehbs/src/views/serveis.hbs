@@ -1,44 +1,76 @@
+<head>
+  <style>
+    body {
+      font-family:system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    }
+    .ki{
+      background-image: linear-gradient(180deg,
+        rgb(175, 0, 0) 0%,
+        rgb(58, 0, 0) 100%
+      )
+    }
+  </style>
+</head>
 
 <div class="container">
 
-  <div class="nav-scroller py-1 mb-2">
-
-  </div>
-
-  <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
-    <div class="col-md-6 px-0">
-      <h1 class="display-4 font-italic">{{title}}</h1>
-      <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
-      <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>
+  <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark" style="background-color: #87878752!important; margin-top:100px!important;">
+    <div class="col-md-8 px-0">
+      <h1 class="display-2 font-italic"><b>{{title}}</b></h1>
+      <p class="lead my-3">Benvolgut/Benvolguda {{#if user}}{{#each user}}{{Nom}}{{/each}}{{/if}}, vols saber quins serveis oferim en MyNTFLX, els seu propòsit, i quins beneficis pots obtenir d'aquí? T'ho expliquem a continuació!</p>
+      {{#if user.userID}}
+      {{else}}
+      <br>
+      <p class="lead my-3" style="color: gray;">
+        <b>
+        Encara no t'has loguejat. Vols participar en la nostra web?...
+        </b>
+      </p>
+      <p class="lead mb-0"><a href="/login" class="text-white font-weight-bold" style="color: rgb(158, 0, 0)!important; text-decoration: none"><b>LOGIN</b></a></p>
+      {{/if}}
     </div>
+    
   </div>
 
-  <div class="row mb-2">
+  <div class="row mb-2 ki" style="margin-top: 40px; padding-bottom:40px">
+
     <div class="col-md-6">
-      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-primary">World</strong>
-          <h3 class="mb-0">Featured post</h3>
-          <div class="mb-1 text-muted">Nov 12</div>
-          <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="stretched-link">Continue reading</a>
-        </div>
-        <div class="col-auto d-none d-lg-block">
-          {% include icons/placeholder.svg width="200" height="250" background="#55595c" color="#eceeef" text="Thumbnail" %}
+      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: rgba(0, 0, 0, 0.219); border:solid black 5px!important;">
+        <div class="col p-4 d-flex flex-column position-static" style="padding: 40px!important;">
+          <br>
+          <h3 class="mb-0" style="align-items: center; text-align:center; text-decoration:underline"><img src="https://lh3.googleusercontent.com/proxy/6dXCKeksbKRpo1ZMYdZYVpYpRCgMksS0fbf6hShIpb0rXNOQ589wJQRRiKUdGUXh-6g3LR0muNtM5DzfvBz90v2d6__JCrXDdWA0r_hEycsExonah4Q" width="150px" alt=""><br> INSERTA NOVES PEL·LÍCULES I SERIES</h3><br>
+          <p class="card-text mb-auto">Sent usuari admin, pots afegir noves pel·lícules i series que t'agradin, i vulguis recomenar a altres usuaris. Pots valorar quant t'ha agradat, valorant amb una nota de 1 a 10. No ets admin? Pots descubrir obres que altres usuaris recomanen!</p><br>
+          <a href="/insertar" class="stretched-link" style="color: red; text-align:center">DESCOBREIX!</a>
         </div>
       </div>
     </div>
     <div class="col-md-6">
-      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        <div class="col p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-success">Design</strong>
-          <h3 class="mb-0">Post title</h3>
-          <div class="mb-1 text-muted">Nov 11</div>
-          <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="stretched-link">Continue reading</a>
+      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: rgba(0, 0, 0, 0.219); border:solid black 5px!important;">
+        <div class="col p-4 d-flex flex-column position-static" style="padding: 40px!important;">
+          <br>
+          <h3 class="mb-0" style="align-items: center; text-align:center; text-decoration:underline"><img src="https://www.iconpacks.net/icons/1/free-user-group-icon-296-thumb.png" width="80px" alt=""><br> VOTAR EN LA ENQUESTA</h3><br>
+          <p class="card-text mb-auto">Totes les series i pel·lícules dels nostres usuaris es registren a l'apartat de catàleg. Però quina pel·lícula o serie es la favorita en comú de tots els usuaris? A l'apartat de "Enquesta" pots votar per la teva obra favorita. Al final de cada trimestre es farà una gràfica de les obres mes ben valorades.</p><br>
+          <a href="/insertar" class="stretched-link" style="color: red; text-align:center">PARTICIPA!</a>
         </div>
-        <div class="col-auto d-none d-lg-block">
-          {% include icons/placeholder.svg width="200" height="250" background="#55595c" color="#eceeef" text="Thumbnail" %}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: rgba(0, 0, 0, 0.219); border:solid black 5px!important;">
+        <div class="col p-4 d-flex flex-column position-static" style="padding: 40px!important;">
+          <br>
+          <h3 class="mb-0" style="align-items: center; text-align:center; text-decoration:underline"><img style="margin-bottom: 10px;" src="https://www.pngkit.com/png/full/115-1150342_user-avatar-icon-iconos-de-mujeres-a-color.png" width="80px" alt=""><br> PERSONALITZA EL TEU PERFIL</h3><br>
+          <p class="card-text mb-auto">Si ets usuari de la nostra pàgina, tens la possibilitat de personalitzar la teva pàgina de perfil. En aquesta s'emmagatzemaràn publicament totes les series i pelicules que recomanis, i podrás editar la imatge de perfil, nom...</p><br>
+          <a href="/insertar" class="stretched-link" style="color: red; text-align:center">EDITAR!</a>
+        </div>
+      </div>
+    </div>
+        <div class="col-md-6">
+      <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="background-color: rgba(0, 0, 0, 0.219); border:solid black 5px!important;">
+        <div class="col p-4 d-flex flex-column position-static" style="padding: 40px!important;">
+          <br>
+          <h3 class="mb-0" style="align-items: center; text-align:center; text-decoration:underline"><img src="https://images.squarespace-cdn.com/content/v1/5d2c8ea74ac6c80001c9d522/1563283506191-SPBR57R0339GECZZTATC/icono-bombilla.png" width="60px" alt=""><br> LA TEVA OPINIÓ INPORTA</h3><br>
+          <p class="card-text mb-auto">Tens alguna queixa o sugerència relacionat amb aquesta pàgina web? Pots comunicar-ho amb nosaltres directament a travès de l'apartat de "Contacte". La teva opinió ens importa! Una vegada enviis un missatge, será llegit i valorat pels nostres personals.</p><br>
+          <a href="/insertar" class="stretched-link" style="color: red; text-align:center">CONTACTAR!</a>
         </div>
       </div>
     </div>
@@ -48,30 +80,12 @@
 <main role="main" class="container">
   <div class="row">
     <div class="col-md-8 blog-main">
-      <h3 class="pb-4 mb-4 font-italic border-bottom">
-        From the Firehose
-      </h3>
 
       <div class="blog-post">
-        <h2 class="blog-post-title">Sample blog post</h2>
-        <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
+        <h2 class="blog-post-title">Qui Som?</h2>
 
-        <p>This blog post shows a few different types of content that’s supported and styled with Bootstrap. Basic typography, images, and code are all supported.</p>
+        <p>Vols saber qui som, i amb quin propòsit fem aquesta pàgina web? <a href="/quiSom" style="color: red;">Coneix-nos</a></p>
         <hr>
-        <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-        <blockquote>
-          <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        </blockquote>
-        <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-        <h2>Heading</h2>
-        <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-      </div><!-- /.blog-post -->
-
-
-      <nav class="blog-pagination">
-        <a class="btn btn-outline-primary" href="#">Older</a>
-        <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
-      </nav>
 
     </div><!-- /.blog-main -->
 

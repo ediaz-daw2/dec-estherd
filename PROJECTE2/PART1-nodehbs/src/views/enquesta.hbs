@@ -1,0 +1,73 @@
+<head>
+    <style>
+        .jumbotron .container {
+        max-width: 70rem;
+        margin-top: -40px;
+        }
+    </style>
+</head>
+<body>
+        <main role="main" class="flex-shrink-0 mb-5 mt-4">
+        <div class="jumbotron">
+            <div class="container">
+                    <div class="row">
+                        <h1 class="col-12" style="margin-top:-40px;">{{title}}</h1>
+
+                        <div class="col-12">
+                            <h3>Vota les teves series favorites!</h3>
+                            <p style="color: gray;"> Escull la serie o pel·lícula que més recomanes als usuarias. La teva opinió pot ajudar a altre persona a torbar una bona pel·lícula o serie! Pots escollir tantes com vulguis, pero assegura't de escollir unes poques que de veritat recomanis per a sobre de tot.</p><br>
+                        </div><br>
+                        <div class="col-12" style="margin-top: 40px; text-align:center; background-color: #87878752; padding: 10px">
+                            <h2 class="col-12" style="color:red; margin-top: 30px;">Quina es la teva obra favorita?</h2>
+                                <form name="form" id="form" action="">
+                                    <div class="row" style="margin-top: 30px;">
+                                        <div class="col-12" style="margin:0%">
+                                            {{#each user}} 
+                                                <input name="nomuser" type="text" id="inputUser" placeholder="Qui ets?" style="padding: 10px; font-size: 18px; border-radius: 5px;"  readonly value={{Nom}}><br>
+                                            {{/each}}
+                                        </div>
+                                        {{#if element}}
+                                         {{#each element}}
+                                        <div class="col-4">        
+                                            <br>
+                                             <img src="{{Img}}" width="80px" alt="" style="margin-right: 10px;">  <input type="checkbox" name="element" id="id_element" value="{{NomEl}}"> {{NomEl}} 
+                                        </div>
+                                        {{/each}}
+                                        {{/if}}
+                                        
+                                        {{#if user.userID}}
+                                        
+                                        <div class="col-12">
+                                        <br>
+                                        <input class="btn btn-lg btn-primary btn-block col-12" style="color: white; background-color: rgb(214, 0, 0); padding: 10px; border-radius:10px; width:400px; border-color:brown" type="submit" onclick="formu()" readonly value="ENVIAR"/><br>
+                                        </div>
+                                       
+                                    </div>
+                                </form>
+                            {{else}}
+                            
+                            <div class="col-12">
+                                <br>
+                                <br>
+                                <a href="/login" align="center" style="text-decoration: none; color: white; background-color: rgb(214, 0, 0); padding: 10px; border-radius:10px; width: 400px">No estás registrat. Logueja-'t per a poder participar en l'enquesta!</a><br>
+                            </div>
+                            {{/if}}
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </main>
+    <script>
+        var formulari = document.getElementById("form");
+        function formu(){
+            formulari.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert("La teva votació ha sigut enviada correctament. Gràcies!");
+             window.location.href = "/enquesta";
+            });
+        }
+    </script>
+</body>

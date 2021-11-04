@@ -223,10 +223,14 @@ router.get('/enquesta',(req, res) => {
             user=> user.nom===userID,
         )
     }
-    res.render('enquesta',{
-        title: "Enquesta", 
-        active: {Enquesta: true},
-        user: {userID}
+    db.ref('elements').once('value',(snapshot)=>{
+        const data = snapshot.val();
+        res.render('enquesta',{
+            title: "Enquesta", 
+            active: {Enquesta: true},
+            user: {userID},
+            element: data
+        });
     });
 });
 

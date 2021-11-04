@@ -17,7 +17,7 @@ const dbConnection=async()=>{
             useNewParser: true,
             userUnifiedTipology: true,
             useCreateIndex: true,
-            useFindAndModify
+            useFindAndModify: true
         });
         console.log("Base de dades online");
     }catch(error){

@@ -1,9 +1,66 @@
-    <main role="main" class="flex-shrink-0 mb-5 mt-4">
-    <div class="jumbotron">
-        <div class="container">
-            <h1>{{title}}</h1>
-            AAAAAAAAAAAAAAAAA
+<head>
+    <style>
+        .jumbotron .container {
+        max-width: 70rem;
+        margin-top: -40px;
+        }
+    </style>
+</head>
+<body>
+        <main role="main" class="flex-shrink-0 mb-5 mt-4">
+        <div class="jumbotron">
+            <div class="container">
+                    <div class="row">
+                        <h1 class="col-12" style="margin-top:-40px;">{{title}}</h1>
+
+                        <div class="col-12">
+                            <h3>Tens alguna queixa o sugerència? Contacta amb nosaltres!</h3>
+                            <p style="color: gray;"> El teu correu serà revisat i analitzat. Per favor, escriu-ne només si es necessari.</p><br>
+                        </div><br>
+                        <div class="col-12" style="margin-top: 40px; text-align:center; background-color: #87878752; padding: 10px">
+                            <h2 class="col-12" style="color:red; margin-top: 30px;">Què ens vols comunicar?</h2>
+                            {{#if user.userID}}
+                                <form action="" id="form">
+                                    <div class="row" style="margin-top: 30px;">
+                                        <div class="col-6" style="margin:0%">
+                                            {{#each user}} 
+                                                <input name="nomuser" type="text" id="inputUser" placeholder="Qui ets?" style="padding: 10px; font-size: 18px; border-radius: 5px;" value={{Nom}} readonly><br>
+                                            {{/each}}
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" name="assumpte" id="inputAssumpte" style="padding: 10px; font-size: 18px; border-radius: 5px;"  placeholder="Assumpte...">
+                                        </div><br>
+                                        <div class="col-12">
+                                            <textarea name="missatge" id="inputMissatge" style="margin-top:30px; padding: 10px; font-size: 18px; width: 700px; height: 200px; border-radius: 5px;"  placeholder="Missatge..."></textarea>
+                                        </div> 
+                                        <div class="col-12">
+                                            <br>
+                                        <input class="btn btn-lg btn-primary btn-block col-12" style="color: white; background-color: rgb(214, 0, 0); padding: 10px; border-radius:10px; width:400px; border-color:brown" type="submit" onclick="formu()" value="ENVIAR"/><br>
+                                        </div>
+                                    </div>
+                                </form>
+                            {{else}}
+                            <br>
+                            <br>
+                                <a href="/login" style="text-decoration: none; color: white; background-color: rgb(214, 0, 0); padding: 10px; border-radius:10px">Logueja-'t per a poder enviar un missatge!</a><br>
+                                <br><br>
+                            {{/if}}
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
-        
-    </div>
     </main>
+    <script>
+        var formulari = document.getElementById("form");
+        function formu(){
+            formulari.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert("El teu correu ha sigut correctament. Gràcies!");
+             window.location.href = "/contacte";
+            });
+        }
+    </script>
+</body>
