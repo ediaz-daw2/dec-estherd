@@ -174,7 +174,6 @@ const confirmar = async(message) => {
 };
 
 
-
 const opcions = async (tasques=[]) => {
   
   const choices = tasques.map((tasca, i) => {
